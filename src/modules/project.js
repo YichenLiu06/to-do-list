@@ -3,12 +3,12 @@ import { createToDo } from "./toDo";
 const createProject = (title) => {
 
   //Store To Dos, Add/Delete To Dos, 
-  const project = {};
+  const project = [];
 
   const addToDo = (title, description, dueDate, priority) => {
     if(!hasToDo(title)){
-      const toDo = createToDo(title, description, dueDate, priority);
-      project[title] = toDo;
+      let toDo = createToDo(title, description, dueDate, priority);
+      project.push(toDo);
       return true;
     }
     return false;
@@ -16,19 +16,19 @@ const createProject = (title) => {
 
   const deleteToDo = (title) => {
     if(hasToDo(title)){
-      delete project[title];
+      project.splice(project.findIndex((toDo) => toDo.title == title));
       return true;
     }
     return false;
   }
 
-  const getToDo = (title) => {
-    return project[title];
+  const getToDos = () => {
+    return project;
   }
 
-  const hasToDo = (title) => Object.hasOwn(project, title);
+  const hasToDo = (title) => project.some((toDo) => toDo.title == title);
 
-  return {title, addToDo, deleteToDo, hasToDo};
+  return {title, addToDo, deleteToDo, hasToDo, getToDos};
 
 }
 

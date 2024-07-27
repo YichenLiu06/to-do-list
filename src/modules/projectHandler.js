@@ -1,12 +1,12 @@
 import { createProject } from "./project";
 
 const createProjectHandler = () => {
-  const projects = {};
+  const projects = [];
 
   const addProject = (title) => {
     if(!hasProject(title)){
       const project = createProject(title)
-      projects[title] = project;
+      projects.push(project);
       return true; 
     }
     return false;
@@ -14,23 +14,23 @@ const createProjectHandler = () => {
 
   const deleteProject = (title) => {
     if(hasProject(title)){
-      delete projects[title];
+      projects.splice(projects.findIndex((project) => project.title == title),1);
       return true;
     }
     return false;
   }
 
-  const getProject = (title) => {
-    return projects[title];
+  const getProjects = () => {
+    return projects;
   }
 
-  const hasProject = (title) => Object.hasOwn(projects, title);
+  const hasProject = (title) => projects.some((project) => project.title == title);
 
   const displayProjects = () => {
     console.log(projects);
   }
 
-  return {addProject, getProject, deleteProject, hasProject, displayProjects}
+  return {addProject, getProjects, deleteProject, hasProject, displayProjects}
 }
 
 export {createProjectHandler}

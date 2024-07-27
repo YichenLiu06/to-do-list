@@ -54,7 +54,10 @@ header {
   border-radius: 10px;
   border: 2px #44403c solid;
   border-left: #a21caf 10px solid;
-  padding: 10px;
+  display: flex;
+  padding: 5px;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .todos {
@@ -76,16 +79,20 @@ header {
 }
 
 .todo-wrapper {
+  --low: #15803d;
+  --medium: #eab308;
+  --high: #991b1b;
   border-radius: 10px;
   border: 2px #44403c solid;
-  border-left: #991b1b 10px solid;
+  border-left: var(--medium) 10px solid;
   display: flex;
   align-items: center;
   padding-right : 10px;
 }
 
-.delete-button {
+.due-date {
   margin-left: auto;
+  margin-right: 10px
 }
 
 .add-todo {
@@ -115,4 +122,9 @@ form input, form select {
   background-color: #15803d;
   border: none;
   margin-top: 10px;
+}
+
+.delete-button {
+  position: relative;
+  z-index: 100;
 }
